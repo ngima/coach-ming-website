@@ -5,6 +5,7 @@ import { site } from "@/config/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Cursor } from "@/components/ui/Cursor";
 import { businessSchema, graph, personSchema, websiteSchema } from "@/lib/seo";
 
 const chakra = Chakra_Petch({
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <Cursor />
         <JsonLd data={graph(websiteSchema(), businessSchema(), personSchema())} />
       </body>
     </html>

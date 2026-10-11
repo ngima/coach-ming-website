@@ -2,21 +2,24 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { nav } from "@/config/site";
 import { cn } from "@/lib/cn";
 
 /**
- * Desktop navigation with an "angle-grinder" hover: the lime underline cuts
- * across the item from left to right while sparks spray off the cutting tip
- * and the label vibrates. Clicking cuts through: the line completes and
- * stays as the active indicator. Everything is pointer-driven, so it costs
- * nothing until a cursor arrives. Under prefers-reduced-motion the cut and the
- * brief, confined sparks still play; only the label vibration is dropped.
+ * Desktop navigation with an "angle-grinder" hover: the disc bites about 75%
+ * into the item and keeps grinding there, sparks spraying off the tip and the
+ * label vibrating, for as long as the cursor stays. Clicking cuts through: the
+ * line completes, the label goes still, then the page changes. Pointer-driven,
+ * so it costs nothing until a cursor arrives. Under prefers-reduced-motion the
+ * cut and the brief, confined sparks still play; only the vibration is dropped.
  */
 
 type Spark = { x: number; y: number; vx: number; vy: number; age: number; life: number };
 
-const CUT_MS = 420;
+const BITE = 0.75; // how far the hover cut goes before it holds
+const BITE_MS = 320;
+const CUT_MS = 300; // click: cut through the rest
 const RETRACT_MS = 140;
 const GRAVITY = 900;
 
@@ -40,6 +43,12 @@ class SparkField {
   constructor(private canvas: HTMLCanvasElement, private list: HTMLUListElement) {}
 
   emit(x: number, y: number, count: number, burst = false) {
+    // a little tip jitter while grinding: the disc is never perfectly still
+    if (!burst && count < 3) {
+      x += (Math.random() - 0.5) * 2;
+      y += (Math.random() - 0.5) * 1.5;
+      if (Math.random() < 0.4) count += 1;
+    }
     for (let i = 0; i < count; i++) {
       // sparks fly forward and down from the cut, with a few thrown back
       const angle = burst ? Math.random() * Math.PI * 2 : -0.95 + Math.random() * 1.5;
@@ -148,11 +157,12 @@ type ItemProps = {
 };
 
 function NavItem({ href, label, active, reduce, emit, listRef }: ItemProps) {
+  const router = useRouter();
   const lineRef = useRef<HTMLSpanElement>(null);
-  const linkRef = useRef<HTMLAnchorElement>(null);
   const progress = useRef(active ? 1 : 0);
   const raf = useRef<number | null>(null);
-  const [shaking, setShaking] = useState(false);
+  const grindRaf = useRef<number | null>(null);
+  const [grinding, setGrinding] = useState(false);
 
   const setLine = (p: number) => {
     if (lineRef.current) lineRef.current.style.transform = `scaleX(${p})`;
@@ -175,7 +185,20 @@ function NavItem({ href, label, active, reduce, emit, listRef }: ItemProps) {
     return { x: lr.left - ur.left + fullWidth * progress.current, y: lr.top - ur.top + lr.height / 2 };
   };
 
-  const animate = (target: number, ms: number, sparking: boolean) => {
+  const stopGrind = () => {
+    if (grindRaf.current) cancelAnimationFrame(grindRaf.current);
+    grindRaf.current = null;
+    setGrinding(false);
+  };
+
+  // Hold the disc against the metal: a steady spray with a little tip jitter.
+  const grind = () => {
+    const p = tip();
+    if (p) emit(p.x, p.y, 1);
+    grindRaf.current = requestAnimationFrame(grind);
+  };
+
+  const animate = (target: number, ms: number, sparking: boolean, done?: () => void) => {
     if (raf.current) cancelAnimationFrame(raf.current);
     const from = progress.current;
     const start = performance.now();
@@ -188,35 +211,51 @@ function NavItem({ href, label, active, reduce, emit, listRef }: ItemProps) {
         if (p) emit(p.x, p.y, 3);
       }
       if (t < 1) raf.current = requestAnimationFrame(step);
-      else raf.current = null;
+      else {
+        raf.current = null;
+        done?.();
+      }
     };
     raf.current = requestAnimationFrame(step);
   };
 
   const onEnter = () => {
-    if (active) return;
-    if (!reduce) setShaking(true);
-    animate(1, CUT_MS * (1 - progress.current), true);
+    if (active || grindRaf.current) return;
+    if (!reduce) setGrinding(true);
+    animate(BITE, BITE_MS, true, () => {
+      if (grindRaf.current === null) grindRaf.current = requestAnimationFrame(grind);
+    });
   };
 
   const onLeave = () => {
     if (active) return;
+    stopGrind();
     animate(0, RETRACT_MS, false);
   };
 
-  const onClick = () => {
-    const p = tip();
-    if (p) emit(p.x, p.y, 28, true);
-    progress.current = 1;
-    setLine(1);
+  const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Plain left-clicks get the cut-through before navigating; modified clicks behave natively.
+    if (active || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    stopGrind();
+    animate(1, CUT_MS * (1 - progress.current), true, () => {
+      const p = tip();
+      if (p) emit(p.x, p.y, 28, true);
+      router.push(href);
+    });
   };
 
-  useEffect(() => () => { if (raf.current) cancelAnimationFrame(raf.current); }, []);
+  useEffect(
+    () => () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+      if (grindRaf.current) cancelAnimationFrame(grindRaf.current);
+    },
+    [],
+  );
 
   return (
     <li className="relative">
       <Link
-        ref={linkRef}
         href={href}
         aria-current={active ? "page" : undefined}
         onPointerEnter={onEnter}
@@ -226,12 +265,7 @@ function NavItem({ href, label, active, reduce, emit, listRef }: ItemProps) {
         onClick={onClick}
         className={cn("nav-link relative block px-4 py-2 transition-colors", active ? "text-fg" : "text-muted hover:text-fg")}
       >
-        <span
-          className={cn("inline-block", shaking && "nav-shake")}
-          onAnimationEnd={() => setShaking(false)}
-        >
-          {label}
-        </span>
+        <span className={cn("inline-block", grinding && "nav-grinding")}>{label}</span>
         <span
           ref={lineRef}
           aria-hidden
