@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Cursor } from "@/components/ui/Cursor";
+import { MobileCta } from "@/components/layout/MobileCta";
 import { businessSchema, graph, personSchema, websiteSchema } from "@/lib/seo";
 
 const chakra = Chakra_Petch({
@@ -20,7 +21,7 @@ const chakra = Chakra_Petch({
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
 
-const title = `${site.brand} · Female Personal Trainer in ${site.city} | ${site.gym}`;
+const title = `${site.brand} · Personal Trainer in ${site.city} | ${site.gym}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -28,9 +29,10 @@ export const metadata: Metadata = {
   description: site.description,
   keywords: [
     "personal trainer Abu Dhabi",
+    "strength coach Abu Dhabi",
+    "fat loss coach Abu Dhabi",
     "female personal trainer Abu Dhabi",
     "ladies personal trainer Abu Dhabi",
-    "women's strength coach Abu Dhabi",
     "postnatal personal trainer Abu Dhabi",
     "My-PT Abu Dhabi",
     "online coaching UAE",
@@ -73,6 +75,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Footer />
         <Cursor />
+        <MobileCta />
         <JsonLd data={graph(websiteSchema(), businessSchema(), personSchema())} />
       </body>
     </html>

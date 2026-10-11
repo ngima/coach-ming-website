@@ -35,10 +35,10 @@ export default function AboutPage() {
             eyebrow={`About · ${site.gym} · ${site.city}`}
             title={
               <>
-                Hi, I am {site.name}, call me {site.nickname}. I coach women to <span className="text-lime">get strong</span>
+                Hi, I am {site.name}, call me {site.nickname}. I coach people to <span className="text-lime">get strong</span>
               </>
             }
-            text={`${site.role} at ${site.gym}. I believe strength is the most honest form of confidence, and that every woman deserves a coach who takes her goals seriously.`}
+            text={`${site.role} at ${site.gym}. I believe strength is the most honest form of confidence, and that everyone deserves a coach who takes their goals seriously.`}
           />
           <Reveal delay={0.15} className="chamfer-lg relative aspect-[4/5] w-full max-w-md justify-self-center bg-line p-px md:justify-self-end">
             <div className="chamfer-lg relative h-full overflow-hidden bg-surface">
@@ -62,7 +62,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-24">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <Reveal>
             <p className="eyebrow">My story</p>
@@ -73,19 +73,19 @@ export default function AboutPage() {
           <Reveal delay={0.1} className="space-y-5 text-base leading-relaxed text-muted md:text-lg">
             {/* TODO: personalise this story with the coach's real journey. */}
             <p>
-              I did not grow up athletic. My first gym membership went unused for months because I was intimidated by the weights floor and unsure what to do. What changed everything was one coach who showed me how to squat properly. Within a year I was stronger than I had ever been, and I knew I wanted to give other women that same moment.
+              I did not grow up athletic. My first gym membership went unused for months because I was intimidated by the weights floor and unsure what to do. What changed everything was one coach who showed me how to squat properly. Within a year I was stronger than I had ever been, and I knew I wanted to give other people that same moment.
             </p>
             <p>
               I became certified, specialised in pre and postnatal training because so many women are told to “take it easy” instead of being shown how to train safely, and joined {site.gym} in {site.city} to coach full-time.
             </p>
             <p>
-              Today I work with beginners, busy professionals and new mums. Different goals, same standard: a clear plan, excellent technique and a coach who shows up for every session. You will work hard. You will also laugh, usually at my jokes, occasionally at my playlist.
+              Today I work with beginners, busy professionals, new mums and lifters chasing their next PR. Men and women, all levels. Different goals, same standard: a clear plan, excellent technique and a coach who shows up for every session. You will work hard. You will also laugh, usually at my jokes, occasionally at my playlist.
             </p>
           </Reveal>
         </Container>
       </section>
 
-      <section className="border-y border-line bg-surface py-16 md:py-24">
+      <section className="border-y border-line bg-surface py-12 md:py-24">
         <Container className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
             <Reveal>

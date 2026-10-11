@@ -10,6 +10,7 @@ import { CTABand } from "@/components/sections/CTABand";
 const specialities = [
   "Strength training",
   "Fat loss",
+  "All levels welcome",
   "Postnatal coaching",
   "Ladies-only sessions",
   "Mobility",
@@ -22,7 +23,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Ticker items={specialities} />
+      <div className="hidden md:block">
+        <Ticker items={specialities} />
+      </div>
       <Services />
       <Why />
       <Process />

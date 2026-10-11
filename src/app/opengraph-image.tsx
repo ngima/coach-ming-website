@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/config/site";
 
-export const alt = `${site.brand} — Female Personal Trainer in ${site.city}`;
+export const alt = `${site.brand} — Personal Trainer in ${site.city}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

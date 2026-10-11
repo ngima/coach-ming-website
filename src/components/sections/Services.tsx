@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export function Services() {
   return (
-    <section id="services" className="py-20 md:py-28">
+    <section id="services" className="py-14 md:py-28">
       <Container>
         <SectionHeading
           eyebrow="Programmes"

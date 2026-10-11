@@ -8,14 +8,14 @@ export const site = {
   surname: "Sherpa",
   nickname: "Ming",
   brand: "Coach Ming",
-  role: "Female Personal Trainer",
+  role: "Personal Trainer",
   gym: "My-PT",
   city: "Abu Dhabi",
   country: "United Arab Emirates",
   countryCode: "AE",
   url: "https://coachming.ae", // TODO: replace with the real domain once bought
   description:
-    "Female personal trainer in Abu Dhabi at My-PT. 1-to-1 strength, fat loss and postnatal coaching for women, programmed with precision and delivered with care.",
+    "Personal trainer in Abu Dhabi at My-PT. 1-to-1 strength, fat loss and conditioning coaching for everyone, with a ladies-only option and pre & postnatal expertise. Programmed with precision, delivered with care.",
   whatsapp: "971500000000", // TODO: coach's WhatsApp number, digits only, with country code
   whatsappMessage:
     "Hi Ming, I found your website and I'd like to book a free consultation.",
@@ -76,7 +76,7 @@ export const services: Service[] = [
     ],
     from: "AED 350", // TODO
     cadence: "per session · packs of 8, 12 or 24",
-    audience: "Women who want results with zero guesswork",
+    audience: "Anyone who wants results with zero guesswork"
   },
   {
     id: "ladies-group",
@@ -109,7 +109,7 @@ export const services: Service[] = [
     ],
     from: "AED 900", // TODO
     cadence: "per month",
-    audience: "Self-motivated women who want expert structure",
+    audience: "Self-motivated people who want expert structure"
   },
 ];
 
@@ -137,8 +137,8 @@ export const differentiators = [
     text: "Every session belongs to a block with a purpose. You will always know why you are doing what you are doing.",
   },
   {
-    title: "Women-first coaching",
-    text: "Cycle-aware training, pre and postnatal expertise, and a ladies-only option for anyone who prefers privacy.",
+    title: "Coaching for every body",
+    text: "Men and women, first-timers and seasoned lifters. Pre and postnatal expertise when you need it, and a ladies-only option if you prefer privacy.",
   },
   {
     title: "Technique before load",
@@ -166,16 +166,20 @@ export const testimonials = [
   },
   {
     quote:
-      "The small group feels like training with friends, but the coaching is serious. Best value in Abu Dhabi.",
-    name: "Priya R.",
-    detail: "Ladies-only group",
+      "I came for fat loss and stayed for the strength. Nine kilos down, deadlift up 60 kg, and the sessions are the best part of my week.",
+    name: "Omar H.",
+    detail: "1-to-1 client · 4 months",
   },
 ];
 
 export const faqs = [
   {
-    q: "Do you offer ladies-only personal training in Abu Dhabi?",
-    a: "Yes. All 1-to-1 sessions are coached by me, and the small-group option is strictly women-only. If you prefer privacy, we can schedule sessions in quieter hours at My-PT.",
+    q: "Do you train men as well as women?",
+    a: "Yes. I coach men and women, complete beginners and experienced lifters. The programme is built around your goal and your body, not your gender.",
+  },
+  {
+    q: "Is there a ladies-only option?",
+    a: "Yes. The small-group sessions are women-only, and if you prefer privacy for 1-to-1 we can schedule quieter hours at My-PT.",
   },
   {
     q: "I have never lifted weights. Is this for me?",

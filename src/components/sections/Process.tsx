@@ -18,7 +18,7 @@ export function Process() {
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 });
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-14 md:py-28">
       <Container>
         <SectionHeading
           eyebrow="How it works"

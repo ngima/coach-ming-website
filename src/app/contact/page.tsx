@@ -21,7 +21,7 @@ export default function ContactPage() {
     <>
       <section className="relative overflow-hidden border-b border-line">
         <div aria-hidden className="grid-lines absolute inset-0" />
-        <Container className="relative py-16 md:py-24">
+        <Container className="relative py-12 md:py-24">
           <SectionHeading
             as="h1"
             eyebrow={`Contact · ${site.gym} · ${site.city}`}
@@ -35,7 +35,7 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-24">
         <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <div className="space-y-4">
             <Reveal className="chamfer-lg bg-lime p-px">

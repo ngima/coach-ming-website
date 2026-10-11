@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export function Why() {
   return (
-    <section className="border-y border-line bg-surface py-20 md:py-28">
+    <section className="border-y border-line bg-surface py-14 md:py-28">
       <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <div>
           <SectionHeading
@@ -17,7 +17,7 @@ export function Why() {
                 Coaching with a <span className="text-lime">method</span>, not a mood
               </>
             }
-            text={`I am a ${site.role.toLowerCase()} at ${site.gym} in ${site.city}. I started coaching because I know how it feels to walk into a gym and not know where to begin. My job is to make sure you never feel that again, and to make you laugh at least once before the warm-up is over.`}
+            text={`I am a ${site.role.toLowerCase()} at ${site.gym} in ${site.city}, and I coach anyone who wants to get stronger. I started coaching because I know how it feels to walk into a gym and not know where to begin. My job is to make sure you never feel that again, and to make you laugh at least once before the warm-up is over.`}
           />
           <Reveal delay={0.1} className="mt-8 flex items-center gap-5">
             <Image

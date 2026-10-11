@@ -9,11 +9,11 @@ export function Footer() {
   return (
     <footer className="relative border-t border-line bg-surface">
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/60 to-transparent" />
-      <div className="mx-auto grid w-full max-w-[1200px] gap-12 px-6 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-8">
-        <div className="space-y-5">
+      <div className="mx-auto grid w-full max-w-[1200px] grid-cols-2 gap-x-6 gap-y-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:gap-12 md:px-8 md:py-16">
+        <div className="col-span-2 space-y-5 md:col-span-1">
           <Logo />
           <p className="max-w-sm text-sm leading-relaxed text-muted">
-            {site.role} at {site.gym}, {site.city}. Strength, fat loss and postnatal coaching for women who want a plan that works.
+            {site.role} at {site.gym}, {site.city}. Strength, fat loss and conditioning coaching for anyone who wants a plan that works.
           </p>
           <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-fg transition-colors hover:text-lime">
             <svg aria-hidden width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -69,7 +69,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-line">
-        <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-2 px-6 py-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-2 px-6 py-5 pb-24 md:pb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:flex-row md:items-center md:justify-between md:px-8">
           <span>© {year} {site.brand}. All rights reserved.</span>
           <span>{site.city} · {site.country}</span>
         </div>

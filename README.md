@@ -72,8 +72,8 @@ src/
   config/site.ts          # all content and contact details
   app/                    # routes: / , /services , /about , /contact (+ sitemap, robots, OG image, icon, manifest)
   components/
-    layout/               # Header, DesktopNav (grinder-spark hover), mobile menu, Footer, Logo (SVG mark + wordmark)
-    sections/             # page sections (Hero, ProgrammePanel, Services, Why, Process, Testimonials, FAQ, CTABand)
+    layout/               # Header, DesktopNav (grinder-spark hover), mobile menu, MobileCta (sticky bar), Footer, Logo
+    sections/             # page sections (Hero, Services, Why, Process, Testimonials, FAQ, CTABand)
     ui/                   # Button, Reveal, GlowCard, Accordion, Ticker, SectionHeading, Eyebrow, Container
     forms/ContactForm.tsx # client form → server action in app/contact/actions.ts
     seo/JsonLd.tsx

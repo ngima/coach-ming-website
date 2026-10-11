@@ -11,7 +11,7 @@ import { breadcrumbSchema, graph, servicesSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: `Personal Training Packages in ${site.city}`,
-  description: `1-to-1 personal training, ladies-only small group and online coaching in ${site.city} with ${site.brand} at ${site.gym}. Prices, inclusions and who each programme is for.`,
+  description: `1-to-1 personal training for everyone, ladies-only small group and online coaching in ${site.city} with ${site.brand} at ${site.gym}. Prices, inclusions and who each programme is for.`,
   alternates: { canonical: "/services" },
   openGraph: { title: `Personal Training Packages in ${site.city} · ${site.brand}`, url: `${site.url}/services` },
 };
@@ -21,7 +21,7 @@ export default function ServicesPage() {
     <>
       <section className="relative overflow-hidden border-b border-line">
         <div aria-hidden className="grid-lines absolute inset-0" />
-        <Container className="relative py-16 md:py-24">
+        <Container className="relative py-12 md:py-24">
           <SectionHeading
             as="h1"
             eyebrow={`Programmes · ${site.gym} · ${site.city}`}

@@ -32,7 +32,7 @@
 **Next.js 16 (App Router) + TypeScript + Tailwind v4 + Motion (Framer Motion).**
 - Next.js: first-class on Vercel, static generation for SEO, Metadata API, `next/og` for OG images, `next/font` for zero-layout-shift fonts.
 - Motion: layout animations (`layoutId` nav indicator), scroll-linked reveals, `useReducedMotion`.
-- Hero visual: an animated **sample training block** panel (week tabs, lift loads, weekly intensity bars, block progress ring). It demonstrates the core promise ("programmed, progressed every 4 weeks") at zero runtime cost.
+- Hero visual: Ming's portrait (lime duotone) from the lg breakpoint; on phones the hero is text and two buttons only.
 
 Alternatives considered: Astro (great SEO, weaker for rich interactive 3D islands + transitions); Remix/React Router (fine, but Vercel + OG + fonts are smoother on Next). Mixamo/GLB characters (better realism, but licensing/attribution and 2–5 MB payloads hurt mobile performance).
 
@@ -62,7 +62,6 @@ Alternatives considered: Astro (great SEO, weaker for rich interactive 3D island
 | Service cards: lime border glow tracks cursor | Signals card is a link, not static text |
 | Hero headline: words rise behind a clip mask, staggered 60ms | Hierarchy: read order, "speed" feel |
 | Stats count up once in view | Draws attention to proof |
-| Programme panel: week tabs flip loads/sets with a short rise; intensity bars and progress ring spring to new values | Makes "progression" visible, the tabs invite exploration |
 | Page transitions: 240ms fade + 12px rise | Continuity between routes without delay |
 | FAQ accordion: height animates, chevron rotates | Expectation of expansion |
 | `prefers-reduced-motion`: all of the above become instant/static | Accessibility |
@@ -87,3 +86,4 @@ Alternatives considered: Astro (great SEO, weaker for rich interactive 3D island
 - **Photo.** The supplied casual photo is used on About (duotone lime + grayscale + bottom fade keeps it consistent with the palette) and as a small portrait on the home "Why" section. A studio portrait would still improve the hero.
 - **Route transition only on client navigations.** `template.tsx` used to animate on first load, which serialised `opacity:0` into the HTML and hid the whole page until hydration (mobile LCP +2 s). It now animates only after the first mount.
 - **Mobile Lighthouse ceiling.** With JavaScript blocked the home page scores 100 (LCP 1.8 s simulated). The remaining gap to 100 is Lighthouse's pessimistic slow-4G model counting every script that starts before the paint. Reaching 100 would mean shipping no React/Motion before first paint and no web fonts, which conflicts with the brief; real-device LCP is well under 1 s.
+- **2026-10-11 · Sample programme panel removed; mobile pass.** The client found the panel unnecessary and noisy on phones. Hero now uses the portrait on desktop only. Mobile: ticker hidden, section padding reduced, footer in two columns, and a sticky WhatsApp bar appears after the hero scrolls away so the conversion step is always reachable with a thumb.

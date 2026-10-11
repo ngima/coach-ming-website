@@ -27,13 +27,6 @@ for (const [name, vp] of [["desktop", { width: 1440, height: 900 }], ["mobile", 
     await page.waitForTimeout(600);
     await page.screenshot({ path: `${out}/mobile-menu.png` });
   }
-  if (name === "desktop") {
-    await page.goto(base + "/", { waitUntil: "networkidle" });
-    await page.waitForTimeout(1200);
-    await page.click('[role="tab"]:nth-child(3)');
-    await page.waitForTimeout(900);
-    await page.screenshot({ path: `${out}/desktop-panel-wk8.png`, clip: { x: 720, y: 60, width: 720, height: 840 } });
-  }
   await ctx.close();
 }
 await browser.close();

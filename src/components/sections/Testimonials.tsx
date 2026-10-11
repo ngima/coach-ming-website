@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export function Testimonials() {
   if (testimonials.length === 0) return null;
   return (
-    <section className="border-y border-line bg-surface py-20 md:py-28">
+    <section className="border-y border-line bg-surface py-14 md:py-28">
       <Container>
         <SectionHeading
           eyebrow="Client words"

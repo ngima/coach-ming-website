@@ -8,13 +8,13 @@ import { faqSchema, graph } from "@/lib/seo";
 
 export function FAQ() {
   return (
-    <section id="faq" className="py-20 md:py-28">
+    <section id="faq" className="py-14 md:py-28">
       <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <SectionHeading
           eyebrow="FAQ"
           title={
             <>
-              Questions women <span className="text-lime">ask me</span>
+              Questions I get <span className="text-lime">asked</span>
             </>
           }
           text="If yours is not here, message me on WhatsApp and I will answer personally."
