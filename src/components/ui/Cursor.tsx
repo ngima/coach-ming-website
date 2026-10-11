@@ -8,7 +8,8 @@ const TEXT_INPUT = "input, textarea, [contenteditable='true']";
 /**
  * Dumbbell cursor for mouse users. It sits exactly on the pointer hotspot
  * (no lag, so clicking stays precise), grows over anything clickable, and
- * squashes on press. Touch devices and text fields keep the native cursor.
+ * does slow curls while it hovers, and squashes on press. Touch devices and
+ * text fields keep the native cursor.
  * Blend mode "difference" keeps it visible on both black and lime surfaces.
  */
 export function Cursor() {
@@ -62,12 +63,14 @@ export function Cursor() {
   return (
     <div ref={ref} aria-hidden data-state="hidden" className="cursor-dumbbell">
       <svg viewBox="0 0 32 32" width="32" height="32">
+        <g className="cursor-rep">
         <g transform="rotate(-30 16 16)">
           <rect x="11" y="14.5" width="10" height="3" rx="0.5" fill="#c8f531" />
           <rect x="6" y="11" width="4.5" height="10" rx="0.8" fill="#c8f531" />
           <rect x="21.5" y="11" width="4.5" height="10" rx="0.8" fill="#c8f531" />
           <rect x="3" y="12.5" width="3" height="7" rx="0.6" fill="#c8f531" />
           <rect x="26" y="12.5" width="3" height="7" rx="0.6" fill="#c8f531" />
+        </g>
         </g>
       </svg>
     </div>
