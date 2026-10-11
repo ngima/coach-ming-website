@@ -38,7 +38,7 @@ export function Hero() {
             {lines.map((l, i) => (
               <span key={l.text} className="block">
                 <span
-                  className={l.accent ? "rise-mask-skew inline-block text-lime" : "rise-mask inline-block"}
+                  className={l.accent ? "settle-skew inline-block text-lime" : "settle inline-block"}
                   style={{ "--d": `${0.1 + i * 0.07}s` } as React.CSSProperties}
                 >
                   {l.text}
@@ -48,7 +48,7 @@ export function Hero() {
           </h1>
 
           <p className="rise mt-6 max-w-xl text-base leading-relaxed text-muted md:mt-7 md:text-lg" style={{ "--d": "0.4s" } as React.CSSProperties}>
-            1-to-1 personal training in {site.city} for everyone, from first-timers to seasoned lifters. Strength, fat loss and conditioning at {site.gym}, programmed with precision and delivered with care by {site.brand}. Serious programming, zero scary-coach energy.
+            1-to-1 personal training at {site.gym}, {site.city}. Strength, fat loss and conditioning for every level, programmed with precision. Serious training, zero scary-coach energy.
           </p>
 
           <div className="rise mt-8 flex flex-col gap-3 sm:flex-row sm:items-center md:mt-9" style={{ "--d": "0.5s" } as React.CSSProperties}>
@@ -61,7 +61,7 @@ export function Hero() {
           </div>
 
           <ul className="rise mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:mt-10" style={{ "--d": "0.65s" } as React.CSSProperties}>
-            {["First consult free", "All levels welcome", "Certified coach", "Bad puns included"].map((t) => (
+            {["First consult free", "All levels welcome", "Bad puns included"].map((t) => (
               <li key={t} className="flex items-center gap-2">
                 <Dumbbell size={8} />
                 {t}

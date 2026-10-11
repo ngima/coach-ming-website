@@ -23,7 +23,7 @@ export function Header() {
   const close = () => setOpen(false);
 
   // Start every new page at the very top. Next scrolls the changed segment into
-  // view, which lands just under the sticky header; anchors (#id) are left alone.
+  // view, which lands just under the sticky header; anchor links (#id) are left alone.
   useEffect(() => {
     if (!window.location.hash) window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname]);

@@ -13,10 +13,10 @@ export function Services() {
           eyebrow="Programmes"
           title={
             <>
-              Three ways to <span className="text-lime">train</span>
+              Three ways to train in <span className="text-lime">Abu Dhabi</span>
             </>
           }
-          text="Pick the format that fits your week. Every option runs on the same principle: a real programme, coached properly, progressed on purpose."
+          text="Pick the format that fits your week. Every option is a real programme, coached properly and progressed on purpose."
         />
         <ul className="mt-12 grid gap-4 md:grid-cols-3 md:gap-5">
           {services.map((s, i) => (

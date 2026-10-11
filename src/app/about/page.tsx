@@ -38,7 +38,7 @@ export default function AboutPage() {
                 Hi, I am {site.name}, call me {site.nickname}. I coach people to <span className="text-lime">get strong</span>
               </>
             }
-            text={`${site.role} at ${site.gym}. I believe strength is the most honest form of confidence, and that everyone deserves a coach who takes their goals seriously.`}
+            text={`${site.role} at ${site.gym}. Strength is the most honest form of confidence, and everyone deserves a coach who takes their goals seriously.`}
           />
           <Reveal delay={0.15} className="chamfer-lg relative aspect-[4/5] w-full max-w-md justify-self-center bg-line p-px md:justify-self-end">
             <div className="chamfer-lg relative h-full overflow-hidden bg-surface">

@@ -74,7 +74,7 @@ src/
   components/
     layout/               # Header, DesktopNav (grinder-spark hover), mobile menu, MobileCta (sticky bar), Footer, Logo
     sections/             # page sections (Hero, Services, Why, Process, Testimonials, FAQ, CTABand)
-    ui/                   # Button, Reveal, GlowCard, Accordion, Ticker, SectionHeading, Eyebrow, Container
+    ui/                   # Button, Reveal, GlowCard, Accordion, SectionHeading, Eyebrow, Dumbbell, Cursor, Container
     forms/ContactForm.tsx # client form → server action in app/contact/actions.ts
     seo/JsonLd.tsx
   lib/                    # seo.ts (schema builders), whatsapp.ts, cn.ts (+ tests)

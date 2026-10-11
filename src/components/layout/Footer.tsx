@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { nav, site } from "@/config/site";
-import { whatsappUrl } from "@/lib/whatsapp";
 import { Logo } from "./Logo";
 
 const year = new Date().getFullYear();
@@ -63,13 +62,10 @@ export function Footer() {
               </li>
             ))}
           </ul>
-          <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="nav-link mt-5 inline-block text-lime underline-offset-4 hover:underline">
-            WhatsApp me →
-          </a>
         </div>
       </div>
       <div className="border-t border-line">
-        <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-2 px-6 py-5 pb-24 md:pb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-2 px-6 py-5 pb-[calc(7rem+env(safe-area-inset-bottom))] md:pb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:flex-row md:items-center md:justify-between md:px-8">
           <span>© {year} {site.brand}. All rights reserved.</span>
           <span>{site.city} · {site.country}</span>
         </div>

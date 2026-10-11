@@ -23,12 +23,6 @@
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
-
-  --animate-ticker: ticker 38s linear infinite;
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
 }
 
 @layer base {
@@ -134,15 +128,15 @@
   animation: rise 0.8s var(--ease-out-expo) both;
   animation-delay: var(--d, 0s);
 }
-@utility rise-mask {
-  animation: rise-mask 0.8s var(--ease-out-expo) both;
+@utility settle {
+  animation: settle 0.8s var(--ease-out-expo) both;
   animation-delay: var(--d, 0s);
 }
-@utility rise-mask-skew {
-  animation: rise-mask-skew 0.8s var(--ease-out-expo) both;
+@utility settle-skew {
+  animation: settle-skew 0.8s var(--ease-out-expo) both;
   animation-delay: var(--d, 0s);
 }
-@keyframes rise-mask-skew {
+@keyframes settle-skew {
   from { transform: translateY(0.18em) skewX(-6deg); }
   to { transform: translateY(0) skewX(-6deg); }
 }
@@ -151,7 +145,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 /* Headline settle: moves but never hides, so the LCP paint is not delayed. */
-@keyframes rise-mask {
+@keyframes settle {
   from { transform: translateY(0.18em); }
   to { transform: translateY(0); }
 }

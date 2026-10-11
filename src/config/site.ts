@@ -26,7 +26,6 @@ export const site = {
     street: "My-PT Studio", // TODO: street address
     area: "Al Reem Island", // TODO: area / neighbourhood
     city: "Abu Dhabi",
-    postal: "",
     mapsUrl: "https://maps.google.com/?q=My-PT+Abu+Dhabi", // TODO
     geo: { lat: 24.4539, lng: 54.3773 }, // TODO: studio coordinates
   },
@@ -117,24 +116,24 @@ export const process = [
   {
     step: "01",
     title: "Free consult",
-    text: "A 15-minute WhatsApp or in-person chat about your goals, injuries and schedule. No pressure, no sales script.",
+    text: "A 15-minute chat on WhatsApp or in person about your goals, injuries and schedule. No pressure, no sales script.",
   },
   {
     step: "02",
     title: "Assess & plan",
-    text: "We test how you move, where you are, and what you can commit to. You get a written plan within 48 hours.",
+    text: "We test how you move and what you can commit to. You get a written plan within 48 hours.",
   },
   {
     step: "03",
     title: "Train, track, adjust",
-    text: "Coached sessions, logged progress, and a programme that evolves every four weeks as you get stronger.",
+    text: "Coached sessions, logged progress, and a programme that changes every four weeks as you get stronger.",
   },
 ];
 
 export const differentiators = [
   {
     title: "Programmed, not improvised",
-    text: "Every session belongs to a block with a purpose. You will always know why you are doing what you are doing.",
+    text: "Every session belongs to a block with a purpose. You always know why you are doing what you are doing.",
   },
   {
     title: "Coaching for every body",
@@ -179,19 +178,15 @@ export const faqs = [
   },
   {
     q: "Is there a ladies-only option?",
-    a: "Yes. The small-group sessions are women-only, and if you prefer privacy for 1-to-1 we can schedule quieter hours at My-PT.",
+    a: "Yes. The small-group sessions are women-only. For 1-to-1, we can book quieter hours at My-PT if you prefer privacy.",
   },
   {
     q: "I have never lifted weights. Is this for me?",
-    a: "Absolutely. Most of my clients start as complete beginners. We begin with movement basics and bodyweight, then add load only when technique is solid.",
+    a: "Yes. Most of my clients start as complete beginners. We begin with movement basics and bodyweight, and add load only when technique is solid.",
   },
   {
     q: "How much does personal training cost?",
     a: "1-to-1 sessions start from AED 350, ladies-only small group from AED 150 per session, and online coaching from AED 900 per month. Packs bring the per-session price down. Your first consultation is free.",
-  },
-  {
-    q: "Where are the sessions?",
-    a: "In person at My-PT in Abu Dhabi. Online coaching works anywhere with a gym or a few dumbbells.",
   },
   {
     q: "Can I train during pregnancy or after giving birth?",
@@ -203,6 +198,6 @@ export const faqs = [
   },
   {
     q: "How quickly will I see results?",
-    a: "Strength and energy improve within the first 3–4 weeks. Visible body-composition change typically shows at 8–12 weeks of consistent training and sensible nutrition.",
+    a: "Strength and energy improve within 3–4 weeks. Visible change in body composition usually shows at 8–12 weeks of consistent training and sensible eating.",
   },
 ];
