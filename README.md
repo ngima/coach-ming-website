@@ -13,6 +13,10 @@ npm test           # unit tests (vitest)
 npm run lint
 ```
 
+## Demo mode
+
+The site ships in demo mode: a "demo preview" ribbon above the header, a note in the footer, `noindex` on every page and a `robots.txt` that disallows crawling. That keeps placeholder details out of search results while it is hosted for review. To go live, set `NEXT_PUBLIC_DEMO=false` in Vercel (Settings → Environment Variables) and redeploy.
+
 ## Employment model (read first)
 
 Ming is employed by My-PT and clients book and pay through My-PT. This site is her personal funnel into the gym. It therefore quotes no prices, names My-PT as the provider in structured data, and carries a footer line saying it is not the official My-PT website. Items marked `CONFIRM` in `src/config/site.ts` need a yes from Ming or My-PT before launch:

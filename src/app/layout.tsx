@@ -2,11 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Chakra_Petch, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/config/site";
+import { isDemo } from "@/config/demo";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Cursor } from "@/components/ui/Cursor";
 import { MobileCta } from "@/components/layout/MobileCta";
+import { DemoBanner } from "@/components/layout/DemoBanner";
 import { businessSchema, graph, personSchema, websiteSchema } from "@/lib/seo";
 
 const chakra = Chakra_Petch({
@@ -48,7 +50,9 @@ export const metadata: Metadata = {
     description: site.description,
   },
   twitter: { card: "summary_large_image", title, description: site.description },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
+  robots: isDemo
+    ? { index: false, follow: false, googleBot: { index: false, follow: false } }
+    : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   category: "fitness",
 };
 
@@ -71,6 +75,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <DemoBanner />
         <Header />
         <main id="main" className="flex-1">
           {children}
