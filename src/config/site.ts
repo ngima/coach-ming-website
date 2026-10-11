@@ -138,7 +138,7 @@ export const differentiators = [
   },
   {
     title: "Coaching for every body",
-    text: "Men and women, first-timers and seasoned lifters. Pre and postnatal expertise when you need it, and a ladies-only option if you prefer privacy.",
+    text: "Every gender, every level, from first-timers to seasoned lifters. Pre and postnatal expertise when you need it, and a ladies-only option if you prefer privacy.",
   },
   {
     title: "Technique before load",
@@ -174,8 +174,8 @@ export const testimonials = [
 
 export const faqs = [
   {
-    q: "Do you train men as well as women?",
-    a: "Yes. I coach men and women, complete beginners and experienced lifters. The programme is built around your goal and your body, not your gender.",
+    q: "Who do you train?",
+    a: "Everyone. Any gender, any age over 16, complete beginners and experienced lifters. The programme is built around your goal and your body, not your gender.",
   },
   {
     q: "Is there a ladies-only option?",

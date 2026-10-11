@@ -79,7 +79,7 @@ export default function AboutPage() {
               I became certified, specialised in pre and postnatal training because so many women are told to “take it easy” instead of being shown how to train safely, and joined {site.gym} in {site.city} to coach full-time.
             </p>
             <p>
-              Today I work with beginners, busy professionals, new mums and lifters chasing their next PR. Men and women, all levels. Different goals, same standard: a clear plan, excellent technique and a coach who shows up for every session. You will work hard. You will also laugh, usually at my jokes, occasionally at my playlist.
+              Today I work with beginners, busy professionals, new mums and lifters chasing their next PR. Any gender, every level. Different goals, same standard: a clear plan, excellent technique and a coach who shows up for every session. You will work hard. You will also laugh, usually at my jokes, occasionally at my playlist.
             </p>
           </Reveal>
         </Container>
