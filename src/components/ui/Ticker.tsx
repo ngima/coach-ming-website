@@ -1,3 +1,5 @@
+import { Dumbbell } from "./Dumbbell";
+
 /**
  * Continuous strip of specialities. Pure CSS animation (no JS cost), pauses on
  * hover so it can be read, and collapses to a static list for reduced motion.
@@ -17,7 +19,7 @@ export function Ticker({ items }: { items: string[] }) {
             className="flex items-center gap-10 font-display text-sm font-bold uppercase italic tracking-[0.14em] text-muted"
           >
             {t}
-            <span aria-hidden className="size-1.5 rotate-45 bg-lime" />
+            <Dumbbell size={10} />
           </li>
         ))}
       </ul>

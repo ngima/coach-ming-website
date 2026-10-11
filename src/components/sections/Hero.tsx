@@ -3,6 +3,7 @@ import { site } from "@/config/site";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Dumbbell } from "@/components/ui/Dumbbell";
 
 const lines: { text: string; accent?: boolean }[] = [
   { text: "Your strongest" },
@@ -62,7 +63,7 @@ export function Hero() {
           <ul className="rise mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:mt-10" style={{ "--d": "0.65s" } as React.CSSProperties}>
             {["First consult free", "All levels welcome", "Certified coach", "Bad puns included"].map((t) => (
               <li key={t} className="flex items-center gap-2">
-                <span aria-hidden className="size-1 rotate-45 bg-lime" />
+                <Dumbbell size={8} />
                 {t}
               </li>
             ))}
@@ -90,7 +91,7 @@ export function Hero() {
                   </p>
                 </div>
                 <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-lime">
-                  <span aria-hidden className="size-1.5 rotate-45 bg-lime" />
+                  <Dumbbell size={9} />
                   Taking clients
                 </span>
               </div>
