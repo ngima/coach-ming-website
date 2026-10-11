@@ -22,7 +22,7 @@ export default function NotFound() {
       <div aria-hidden className="grid-lines absolute inset-0" />
       <Container className="relative py-20 md:py-32">
         <div className="mx-auto max-w-2xl text-center">
-          <svg aria-hidden viewBox="0 0 64 36" width="88" height="50" className="mx-auto mb-8 text-lime">
+          <svg aria-hidden viewBox="0 0 64 36" width="88" height="50" className="mx-auto mb-8 mt-3 overflow-visible text-lime">
             <g className="cursor-rep" style={{ animation: "cursor-rep 1.2s ease-in-out infinite" }} fill="currentColor">
               <rect x="22" y="15" width="20" height="6" rx="1" />
               <rect x="12" y="6" width="9" height="24" rx="1.6" />
