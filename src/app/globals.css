@@ -34,7 +34,7 @@
 @layer base {
   html {
     color-scheme: dark;
-    scroll-behavior: smooth;
+    /* no global smooth scroll: it would animate the router's scroll reset on navigation */
     -webkit-text-size-adjust: 100%;
   }
   body {
@@ -55,7 +55,6 @@
     border-radius: 2px;
   }
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
     *, *::before, *::after {
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;

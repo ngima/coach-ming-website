@@ -21,7 +21,7 @@ const BITE = 0.75; // how far the hover cut goes before it holds
 const BITE_MS = 320;
 const CUT_MS = 300; // click: cut through the rest
 const RETRACT_MS = 140;
-const GRAVITY = 900;
+const GRAVITY = 700;
 
 function useReducedMotion() {
   const [reduce, setReduce] = useState(false);
@@ -47,19 +47,19 @@ class SparkField {
     if (!burst && count < 3) {
       x += (Math.random() - 0.5) * 2;
       y += (Math.random() - 0.5) * 1.5;
-      if (Math.random() < 0.4) count += 1;
+      if (Math.random() < 0.5) return; // thinner spray while holding
     }
     for (let i = 0; i < count; i++) {
       // sparks fly forward and down from the cut, with a few thrown back
       const angle = burst ? Math.random() * Math.PI * 2 : -0.95 + Math.random() * 1.5;
-      const speed = (burst ? 140 : 90) + Math.random() * (burst ? 320 : 260);
+      const speed = (burst ? 110 : 60) + Math.random() * (burst ? 220 : 150);
       this.sparks.push({
         x,
         y,
         vx: Math.cos(angle) * speed * (Math.random() < 0.15 ? -0.6 : 1),
         vy: Math.sin(angle) * speed,
         age: 0,
-        life: 0.22 + Math.random() * 0.4,
+        life: 0.16 + Math.random() * 0.28,
       });
     }
     if (this.raf === null) {
@@ -103,10 +103,10 @@ class SparkField {
       // white-hot → lime → ember orange as the spark cools
       ctx.strokeStyle = t < 0.3 ? "#ffffff" : t < 0.65 ? "#c8f531" : "#ff8a3d";
       ctx.globalAlpha = 1 - t * t;
-      ctx.lineWidth = t < 0.3 ? 1.6 : 1.1;
+      ctx.lineWidth = t < 0.3 ? 1.3 : 0.9;
       ctx.beginPath();
       ctx.moveTo(s.x, s.y);
-      ctx.lineTo(s.x - s.vx * 0.028, s.y - s.vy * 0.028);
+      ctx.lineTo(s.x - s.vx * 0.02, s.y - s.vy * 0.02);
       ctx.stroke();
       live.push(s);
     }
@@ -208,7 +208,7 @@ function NavItem({ href, label, active, reduce, emit, listRef }: ItemProps) {
       setLine(progress.current);
       if (sparking) {
         const p = tip();
-        if (p) emit(p.x, p.y, 3);
+        if (p) emit(p.x, p.y, 2);
       }
       if (t < 1) raf.current = requestAnimationFrame(step);
       else {
@@ -240,7 +240,7 @@ function NavItem({ href, label, active, reduce, emit, listRef }: ItemProps) {
     stopGrind();
     animate(1, CUT_MS * (1 - progress.current), true, () => {
       const p = tip();
-      if (p) emit(p.x, p.y, 28, true);
+      if (p) emit(p.x, p.y, 16, true);
       router.push(href);
     });
   };

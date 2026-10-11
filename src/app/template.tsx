@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 /**
- * Route transition: a short fade + 12px rise gives continuity between pages.
+ * Route transition: a short crossfade gives continuity between pages. No
+ * vertical movement, so it can never be mistaken for scrolling.
  * It must never run on the initial load: Motion would serialise `opacity: 0`
  * into the server HTML and hide the page until hydration, delaying LCP by
  * seconds on slow devices. So the first mount renders static, and only
@@ -22,9 +23,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <motion.div
-      initial={animateIn ? { opacity: 0, y: 12 } : false}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.28, ease: [0.2, 0.8, 0.2, 1] }}
+      initial={animateIn ? { opacity: 0 } : false}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
     >
       {children}
     </motion.div>
