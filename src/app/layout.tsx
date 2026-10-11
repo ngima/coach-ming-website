@@ -57,6 +57,9 @@ export const viewport: Viewport = {
   themeColor: "#0a0c0a",
   width: "device-width",
   initialScale: 1,
+  // Needed for env(safe-area-inset-*) to report real values on iOS, so the
+  // sticky mobile bar stays above the home indicator when the toolbar collapses.
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

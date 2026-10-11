@@ -21,7 +21,7 @@ export function MobileCta() {
   return (
     <div
       className={cn(
-        "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] will-change-transform md:hidden",
+        "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pl-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] will-change-transform md:hidden",
         "transition-[translate,opacity] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
         show ? "translate-y-0 opacity-100" : "translate-y-full opacity-0",
       )}

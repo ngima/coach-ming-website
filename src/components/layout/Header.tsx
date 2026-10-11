@@ -43,7 +43,7 @@ export function Header() {
           scrolled || open ? "border-line bg-ink/85 backdrop-blur-md" : "border-transparent bg-transparent",
         )}
       >
-      <div className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-6 md:h-[72px] md:px-8">
+      <div className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-6 pl-[max(1.5rem,env(safe-area-inset-left))] pr-[max(1.5rem,env(safe-area-inset-right))] md:h-[72px] md:px-8">
         <Logo />
 
         <DesktopNav pathname={pathname} />
