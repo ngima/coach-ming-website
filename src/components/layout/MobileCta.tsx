@@ -8,6 +8,9 @@ import { cn } from "@/lib/cn";
 /**
  * Slim sticky WhatsApp bar for phones. It appears once the hero CTA has
  * scrolled away, so the next step is always one thumb away.
+ * No backdrop blur and a dedicated compositor layer: mobile browsers resize
+ * the viewport when the address bar collapses, and a blurred fixed element
+ * repaints slowly during that resize, which makes the bar look laggy.
  */
 export function MobileCta() {
   const { scrollY } = useScroll();
@@ -17,8 +20,8 @@ export function MobileCta() {
   return (
     <div
       className={cn(
-        "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink/90 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-md transition-transform duration-300 ease-out-expo md:hidden",
-        show ? "translate-y-0" : "translate-y-full",
+        "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-transform duration-200 ease-out-expo will-change-transform [transform:translateZ(0)] md:hidden",
+        show ? "translate-y-0" : "translate-y-[110%]",
       )}
       aria-hidden={!show}
     >
