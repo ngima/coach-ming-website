@@ -144,14 +144,32 @@
   animation-delay: var(--d, 0s);
 }
 @keyframes rise-mask-skew {
-  from { transform: translateY(110%) skewX(-6deg); }
+  from { transform: translateY(0.18em) skewX(-6deg); }
   to { transform: translateY(0) skewX(-6deg); }
 }
 @keyframes rise {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* Headline settle: moves but never hides, so the LCP paint is not delayed. */
 @keyframes rise-mask {
-  from { transform: translateY(110%); }
+  from { transform: translateY(0.18em); }
   to { transform: translateY(0); }
+}
+
+/* Grinder vibration on the nav label while the line is cutting. */
+@utility nav-shake {
+  animation: nav-shake 0.42s linear both;
+}
+@keyframes nav-shake {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-0.8px, 0.6px); }
+  20% { transform: translate(0.9px, -0.5px); }
+  30% { transform: translate(-0.6px, -0.7px); }
+  40% { transform: translate(0.7px, 0.8px); }
+  50% { transform: translate(-0.9px, 0.3px); }
+  60% { transform: translate(0.5px, -0.8px); }
+  70% { transform: translate(-0.4px, 0.5px); }
+  80% { transform: translate(0.6px, 0.2px); }
+  90% { transform: translate(-0.3px, -0.3px); }
 }

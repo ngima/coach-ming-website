@@ -155,7 +155,7 @@ export function ProgrammePanel() {
         <div className="border-t border-line px-5 py-3">
           <p className="text-xs leading-relaxed text-muted">
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-lime">Coach note · </span>
-            Loads rise only when every rep looks clean. Your plan will look like this, written for you.
+            Loads rise only when every rep looks clean. Jokes rise regardless. Your plan will look like this, written for you.
           </p>
         </div>
       </div>

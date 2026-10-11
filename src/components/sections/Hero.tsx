@@ -11,8 +11,8 @@ const lines: { text: string; accent?: boolean }[] = [
 ];
 
 /**
- * Headline words rise from behind a clip mask, staggered 70ms, using CSS
- * animations so the LCP text paints before JavaScript hydrates. The stagger
+ * Headline lines settle upward by 0.18em, staggered 70ms, in CSS. They are
+ * never hidden, so the LCP paint happens on the first frame. The stagger
  * sets reading order; the forward-slanted lime word carries the speed cue.
  * The right-hand panel is a sample training block: it shows, rather than
  * claims, that programmes are written down and progressed every four weeks.
@@ -33,7 +33,7 @@ export function Hero() {
 
           <h1 className="display mt-6 text-[clamp(2.9rem,8.5vw,5.6rem)] text-fg">
             {lines.map((l, i) => (
-              <span key={l.text} className="-mb-[0.08em] block overflow-hidden pb-[0.08em]">
+              <span key={l.text} className="block">
                 <span
                   className={l.accent ? "rise-mask-skew inline-block text-lime" : "rise-mask inline-block"}
                   style={{ "--d": `${0.1 + i * 0.07}s` } as React.CSSProperties}
@@ -45,7 +45,7 @@ export function Hero() {
           </h1>
 
           <p className="rise mt-7 max-w-xl text-lg leading-relaxed text-muted" style={{ "--d": "0.4s" } as React.CSSProperties}>
-            1-to-1 personal training for women in {site.city}. Strength, fat loss and postnatal coaching at {site.gym}, programmed with precision and delivered with care by {site.brand}.
+            1-to-1 personal training for women in {site.city}. Strength, fat loss and postnatal coaching at {site.gym}, programmed with precision and delivered with care by {site.brand}. Serious programming, zero scary-coach energy.
           </p>
 
           <div className="rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" style={{ "--d": "0.5s" } as React.CSSProperties}>
@@ -58,7 +58,7 @@ export function Hero() {
           </div>
 
           <ul className="rise mt-10 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted" style={{ "--d": "0.65s" } as React.CSSProperties}>
-            {["First consult free", "Ladies-only option", "Certified coach"].map((t) => (
+            {["First consult free", "Ladies-only option", "Certified coach", "Bad puns included"].map((t) => (
               <li key={t} className="flex items-center gap-2">
                 <span aria-hidden className="size-1 rotate-45 bg-lime" />
                 {t}

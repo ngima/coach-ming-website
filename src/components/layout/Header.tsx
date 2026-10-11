@@ -8,6 +8,7 @@ import { nav, site } from "@/config/site";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "./Logo";
+import { DesktopNav } from "./DesktopNav";
 import { cn } from "@/lib/cn";
 
 export function Header() {
@@ -39,32 +40,7 @@ export function Header() {
       <div className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-6 md:h-[72px] md:px-8">
         <Logo />
 
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-1">
-            {nav.map((item) => {
-              const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-              return (
-                <li key={item.href} className="relative">
-                  <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={cn("nav-link relative block px-4 py-2 transition-colors", active ? "text-fg" : "text-muted hover:text-fg")}
-                  >
-                    {item.label}
-                    {active && (
-                      <motion.span
-                        layoutId="nav-active"
-                        aria-hidden
-                        className="absolute inset-x-4 -bottom-0.5 h-0.5 bg-lime"
-                        transition={{ type: "spring", stiffness: 500, damping: 40 }}
-                      />
-                    )}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <DesktopNav pathname={pathname} />
 
         <div className="hidden md:block">
           <Button href={whatsappUrl()} external size="md">

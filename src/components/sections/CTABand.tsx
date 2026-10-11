@@ -21,7 +21,7 @@ export function CTABand() {
             WhatsApp {site.nickname}
           </Button>
           <p className="max-w-xs text-sm text-ink/70 md:text-right">
-            Replies within 24 hours. Sessions at {site.gym}, {site.city}, or online.
+            Replies within 24 hours, puns within one. Sessions at {site.gym}, {site.city}, or online.
           </p>
         </Reveal>
       </div>

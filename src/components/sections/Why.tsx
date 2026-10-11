@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 
 export function Why() {
   return (
@@ -16,12 +17,22 @@ export function Why() {
                 Coaching with a <span className="text-lime">method</span>, not a mood
               </>
             }
-            text={`I am a ${site.role.toLowerCase()} at ${site.gym} in ${site.city}. I started coaching because I know how it feels to walk into a gym and not know where to begin. My job is to make sure you never feel that again.`}
+            text={`I am a ${site.role.toLowerCase()} at ${site.gym} in ${site.city}. I started coaching because I know how it feels to walk into a gym and not know where to begin. My job is to make sure you never feel that again, and to make you laugh at least once before the warm-up is over.`}
           />
-          <Reveal delay={0.1} className="mt-8">
-            <Button href="/about" variant="secondary">
-              My story
-            </Button>
+          <Reveal delay={0.1} className="mt-8 flex items-center gap-5">
+            <Image
+              src="/images/coach-ming-square.jpg"
+              alt={`${site.name} "${site.nickname}" ${site.surname}, personal trainer`}
+              width={72}
+              height={72}
+              className="chamfer size-[72px] object-cover grayscale contrast-110 ring-1 ring-line-strong"
+            />
+            <div>
+              <p className="font-display text-sm font-bold uppercase italic text-fg">{site.name} “{site.nickname}” {site.surname}</p>
+              <Button href="/about" variant="ghost" className="mt-1 !h-auto !px-0 text-xs text-lime">
+                Read my story
+              </Button>
+            </div>
           </Reveal>
         </div>
         <ul className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">

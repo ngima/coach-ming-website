@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { CTABand } from "@/components/sections/CTABand";
+import Image from "next/image";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, graph, personSchema } from "@/lib/seo";
 
@@ -20,6 +21,7 @@ const principles = [
   { k: "Precision", v: "Every block has a purpose. Sets, reps, rest and tempo are written down, not guessed on the day." },
   { k: "Patience", v: "We earn load with technique. Slow progress that sticks beats fast progress that injures." },
   { k: "Partnership", v: "You are the expert on your life; I am the expert on training. We build the plan together." },
+  { k: "Play", v: "Hard sessions, light mood. If you are not laughing at least once per workout, I am doing it wrong." },
 ];
 
 export default function AboutPage() {
@@ -38,12 +40,23 @@ export default function AboutPage() {
             }
             text={`${site.role} at ${site.gym}. I believe strength is the most honest form of confidence, and that every woman deserves a coach who takes her goals seriously.`}
           />
-          {/* TODO: replace with a professional photo of the coach (next/image, ~1200×1500). */}
-          <Reveal delay={0.15} className="chamfer-lg relative aspect-[4/5] w-full max-w-md justify-self-center bg-gradient-to-br from-surface-3 via-surface to-ink p-px md:justify-self-end">
-            <div className="chamfer-lg relative flex h-full flex-col justify-end bg-[radial-gradient(70%_60%_at_50%_30%,rgba(200,245,49,0.14),transparent_70%)] p-6">
-              <span className="display text-[6rem] leading-none text-lime/20">{site.name[0]}</span>
-              <p className="eyebrow">Photo coming soon</p>
-              <p className="mt-1 font-display text-xl font-bold uppercase italic text-fg">{site.brand}</p>
+          <Reveal delay={0.15} className="chamfer-lg relative aspect-[4/5] w-full max-w-md justify-self-center bg-line p-px md:justify-self-end">
+            <div className="chamfer-lg relative h-full overflow-hidden bg-surface">
+              <Image
+                src="/images/coach-ming.jpg"
+                alt={`${site.name} "${site.nickname}" ${site.surname}, ${site.role.toLowerCase()} at ${site.gym}, ${site.city}`}
+                fill
+                priority
+                sizes="(min-width: 768px) 448px, 100vw"
+                className="object-cover object-top grayscale contrast-[1.15]"
+              />
+              {/* lime duotone + fade keep a casual photo consistent with the dark palette */}
+              <div aria-hidden className="absolute inset-0 bg-lime/25 mix-blend-multiply" />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6">
+                <p className="eyebrow">{site.gym} · {site.city}</p>
+                <p className="mt-1 font-display text-xl font-bold uppercase italic text-fg">{site.name} “{site.nickname}” {site.surname}</p>
+              </div>
             </div>
           </Reveal>
         </Container>
@@ -66,7 +79,7 @@ export default function AboutPage() {
               I became certified, specialised in pre and postnatal training because so many women are told to “take it easy” instead of being shown how to train safely, and joined {site.gym} in {site.city} to coach full-time.
             </p>
             <p>
-              Today I work with beginners, busy professionals and new mums. Different goals, same standard: a clear plan, excellent technique and a coach who shows up for every session.
+              Today I work with beginners, busy professionals and new mums. Different goals, same standard: a clear plan, excellent technique and a coach who shows up for every session. You will work hard. You will also laugh, usually at my jokes, occasionally at my playlist.
             </p>
           </Reveal>
         </Container>
@@ -92,7 +105,7 @@ export default function AboutPage() {
           <div>
             <Reveal>
               <p className="eyebrow">How I coach</p>
-              <h2 className="display mt-4 text-[2rem] text-fg md:text-[2.6rem]">Three <span className="text-lime">principles</span></h2>
+              <h2 className="display mt-4 text-[2rem] text-fg md:text-[2.6rem]">Four <span className="text-lime">principles</span></h2>
             </Reveal>
             <ul className="mt-8 space-y-6">
               {principles.map((p, i) => (

@@ -29,7 +29,7 @@ Everything coach-specific lives in **`src/config/site.ts`**. Search the file for
 
 Also:
 - `src/app/about/page.tsx` — the "My story" paragraphs are a draft to personalise.
-- Add a professional photo of Ming to the About hero (there is a placeholder card with a `TODO` comment). Use `next/image`.
+- Photos live in `public/images/`. `coach-ming.jpg` (About, 1200×1500) and `coach-ming-square.jpg` (home portrait, 480×480) are made from the supplied phone photo; swap in studio shots with the same filenames when available.
 
 ## Contact form email (optional)
 
@@ -72,7 +72,7 @@ src/
   config/site.ts          # all content and contact details
   app/                    # routes: / , /services , /about , /contact (+ sitemap, robots, OG image, icon, manifest)
   components/
-    layout/               # Header (nav + mobile menu), Footer, Logo
+    layout/               # Header, DesktopNav (grinder-spark hover), mobile menu, Footer, Logo (SVG mark + wordmark)
     sections/             # page sections (Hero, ProgrammePanel, Services, Why, Process, Testimonials, FAQ, CTABand)
     ui/                   # Button, Reveal, GlowCard, Accordion, Ticker, SectionHeading, Eyebrow, Container
     forms/ContactForm.tsx # client form → server action in app/contact/actions.ts

@@ -57,7 +57,7 @@ Alternatives considered: Astro (great SEO, weaker for rich interactive 3D island
 
 | Interaction | Job |
 |---|---|
-| Nav underline slides between items (`layoutId`) | Orientation: where am I |
+| Nav "angle-grinder" hover: the lime line cuts left-to-right with sparks off the tip and a 0.4s label vibration; click bursts and leaves the full line as the active state | Orientation plus a brand moment: the site is "engineered", and Ming's humour shows in the UI |
 | Primary button: arrow nudges 4px on hover, 0.98 scale on press | Affordance + tactile confirmation |
 | Service cards: lime border glow tracks cursor | Signals card is a link, not static text |
 | Hero headline: words rise behind a clip mask, staggered 60ms | Hierarchy: read order, "speed" feel |
@@ -82,3 +82,8 @@ Alternatives considered: Astro (great SEO, weaker for rich interactive 3D island
 - **2026-10-11 · 3D figure removed.** A procedural React Three Fiber mannequin with four keyframed exercises (squat, push-up, RDL, lunge) was built and reviewed. It worked and read clearly, but the look was "competent 3D" rather than premium, and it cost the mobile home page ~2 s of main-thread time (Lighthouse mobile 52 vs 87–91 for the other pages). The client agreed it was not the right idea. Replaced with the programme panel; `three`, `@react-three/fiber` and `@react-three/drei` were uninstalled. The figure code was removed before the first project commit, so it is not in git history.
 - **Hero entrance in CSS, not JS.** The headline is the LCP element on mobile; animating it with Motion made it wait for hydration. CSS keyframes with a `--d` stagger variable paint as soon as styles load.
 - **One display-font cut.** Chakra Petch is only ever used bold-italic, so the site ships one file (700 italic) instead of six.
+- **Logo (client asked for more creativity).** Mark: chamfered lime plate with an italic "M" whose outer legs are drawn as two flexed arms. Wordmark: the "I" in MING is an upright dumbbell. Both are inline SVG, so they stay crisp and cost no image request.
+- **Tone.** The client said Ming has a strong sense of humour and is a very good coach. Copy now carries light, specific jokes (bad puns included, "Serious programming, zero scary-coach energy", a "Play" principle, a FAQ about whether she is strict) without touching the professional claims.
+- **Photo.** The supplied casual photo is used on About (duotone lime + grayscale + bottom fade keeps it consistent with the palette) and as a small portrait on the home "Why" section. A studio portrait would still improve the hero.
+- **Route transition only on client navigations.** `template.tsx` used to animate on first load, which serialised `opacity:0` into the HTML and hid the whole page until hydration (mobile LCP +2 s). It now animates only after the first mount.
+- **Mobile Lighthouse ceiling.** With JavaScript blocked the home page scores 100 (LCP 1.8 s simulated). The remaining gap to 100 is Lighthouse's pessimistic slow-4G model counting every script that starts before the paint. Reaching 100 would mean shipping no React/Motion before first paint and no web fonts, which conflicts with the brief; real-device LCP is well under 1 s.

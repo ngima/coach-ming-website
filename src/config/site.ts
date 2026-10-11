@@ -146,7 +146,7 @@ export const differentiators = [
   },
   {
     title: "A coach who shows up",
-    text: "Messages answered within 24 hours, sessions that start on time, and a plan that adapts when life happens.",
+    text: "Messages answered within 24 hours, sessions that start on time, and enough bad jokes to get you through the last set.",
   },
 ];
 
@@ -160,7 +160,7 @@ export const testimonials = [
   },
   {
     quote:
-      "Ming explains everything. My knees stopped hurting once she fixed my squat, and the postnatal plan was exactly what I needed.",
+      "Ming explains everything and somehow makes a 6 am session funny. My knees stopped hurting once she fixed my squat, and the postnatal plan was exactly what I needed.",
     name: "Aisha K.",
     detail: "Postnatal programme",
   },
@@ -192,6 +192,10 @@ export const faqs = [
   {
     q: "Can I train during pregnancy or after giving birth?",
     a: "Yes, with your doctor's clearance. I hold a pre and postnatal specialisation and programme every session around your stage and how you feel that day.",
+  },
+  {
+    q: "Is Ming as strict as she looks?",
+    a: "Only about your knees tracking over your toes. Everything else is negotiable, including the playlist. Expect hard work, clear coaching and at least one terrible pun per session.",
   },
   {
     q: "How quickly will I see results?",

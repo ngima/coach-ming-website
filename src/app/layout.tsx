@@ -17,7 +17,7 @@ const chakra = Chakra_Petch({
 });
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
 
 const title = `${site.brand} · Female Personal Trainer in ${site.city} | ${site.gym}`;
 

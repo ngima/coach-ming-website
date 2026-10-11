@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/cn";
 
 type Variant = "primary" | "secondary" | "ghost" | "inverse";
@@ -21,7 +18,7 @@ type Props = {
 };
 
 const base =
-  "group/btn relative inline-flex items-center justify-center gap-3 select-none font-display font-bold italic uppercase tracking-[0.08em] transition-colors duration-200 disabled:opacity-50 disabled:pointer-events-none";
+  "group/btn relative inline-flex items-center active:scale-[0.98] transition-transform motion-reduce:active:scale-100 justify-center gap-3 select-none font-display font-bold italic uppercase tracking-[0.08em] transition-colors duration-200 disabled:opacity-50 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
   primary: "chamfer bg-lime text-ink hover:bg-[#d8ff4a]",
@@ -47,7 +44,6 @@ export function Button({
   arrow = variant === "primary" || variant === "inverse",
   onClick,
 }: Props) {
-  const reduce = useReducedMotion();
   const classes = cn(base, variants[variant], sizes[size], className);
   const content = (
     <>
@@ -66,27 +62,23 @@ export function Button({
       )}
     </>
   );
-  const tap = reduce ? undefined : { scale: 0.98 };
-
   if (href && external) {
     return (
-      <motion.a whileTap={tap} href={href} target="_blank" rel="noopener noreferrer" className={classes} onClick={onClick}>
+      <a href={href} target="_blank" rel="noopener noreferrer" className={classes} onClick={onClick}>
         {content}
-      </motion.a>
+      </a>
     );
   }
   if (href) {
     return (
-      <motion.div whileTap={tap} className={cn("inline-flex", className?.includes("w-full") && "w-full sm:w-auto")}>
-        <Link href={href} className={classes} onClick={onClick}>
-          {content}
-        </Link>
-      </motion.div>
+      <Link href={href} className={classes} onClick={onClick}>
+        {content}
+      </Link>
     );
   }
   return (
-    <motion.button whileTap={tap} type={type} disabled={disabled} className={classes} onClick={onClick}>
+    <button type={type} disabled={disabled} className={classes} onClick={onClick}>
       {content}
-    </motion.button>
+    </button>
   );
 }

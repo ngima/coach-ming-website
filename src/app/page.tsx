@@ -15,6 +15,7 @@ const specialities = [
   "Mobility",
   "Online coaching",
   "Beginner friendly",
+  "Terrible puns, free of charge",
 ];
 
 export default function HomePage() {
