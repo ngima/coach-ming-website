@@ -3,16 +3,16 @@ import { businessSchema, faqSchema, graph, personSchema, servicesSchema } from "
 import { faqs, services } from "@/config/site";
 
 describe("seo schemas", () => {
-  it("links person and business by @id", () => {
+  it("links person and employer by @id", () => {
     const p = personSchema();
     const b = businessSchema();
     expect(p.worksFor["@id"]).toBe(b["@id"]);
-    expect(b.founder["@id"]).toBe(p["@id"]);
+    expect(b.employee["@id"]).toBe(p["@id"]);
   });
-  it("emits one offer per service with a numeric price", () => {
+  it("emits one service per programme with no prices", () => {
     const s = servicesSchema();
     expect(s.itemListElement).toHaveLength(services.length);
-    for (const o of s.itemListElement) expect(Number(o.price)).toBeGreaterThan(0);
+    expect(JSON.stringify(s)).not.toMatch(/price/i);
   });
   it("emits every FAQ", () => {
     expect(faqSchema().mainEntity).toHaveLength(faqs.length);

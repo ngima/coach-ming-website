@@ -1,6 +1,11 @@
 /**
  * Single source of truth for everything that is specific to the coach.
  * Every value marked TODO is a placeholder — update it before launch.
+ *
+ * Employment model: Ming is employed by My-PT and clients book and pay through
+ * My-PT. This site is her personal funnel into the gym, so it never quotes
+ * prices or sells services directly. Items marked CONFIRM need a yes from
+ * Ming or My-PT before launch.
  */
 
 export const site = {
@@ -18,7 +23,7 @@ export const site = {
     "Personal trainer in Abu Dhabi at My-PT. 1-to-1 strength, fat loss and conditioning coaching for everyone, with a ladies-only option and pre & postnatal expertise. Programmed with precision, delivered with care.",
   whatsapp: "971500000000", // TODO: coach's WhatsApp number, digits only, with country code
   whatsappMessage:
-    "Hi Ming, I found your website and I'd like to book a free consultation.",
+    "Hi Ming, I found your website and I'd like to book a free consultation at My-PT.",
   email: "hello@coachming.ae", // TODO
   instagram: "https://instagram.com/coach.ming", // TODO
   instagramHandle: "@coach.ming", // TODO
@@ -54,7 +59,8 @@ export type Service = {
   tagline: string;
   description: string;
   includes: string[];
-  from: string; // TODO: pricing
+  /** How it is booked. No figures: pricing is set and billed by My-PT. */
+  booking: string;
   cadence: string;
   audience: string;
 };
@@ -73,8 +79,8 @@ export const services: Service[] = [
       "Nutrition guidance that fits your life",
       "Progress check-ins and photos (optional)",
     ],
-    from: "AED 350", // TODO
-    cadence: "per session · packs of 8, 12 or 24",
+    booking: "Booked and billed through My-PT",
+    cadence: "60-minute sessions · packs of 8, 12 or 24", // CONFIRM pack sizes with My-PT
     audience: "Anyone who wants results with zero guesswork"
   },
   {
@@ -82,15 +88,15 @@ export const services: Service[] = [
     name: "Ladies-Only Small Group",
     tagline: "Strength in numbers. Max four women.",
     description:
-      "Coached strength sessions in a private, women-only setting. The energy of a team, the attention of a coach, and a price that makes consistency easy.",
+      "Coached strength sessions in a private, women-only setting. The energy of a team, the attention of a coach, and a format that makes consistency easy.",
     includes: [
       "Maximum 4 women per session",
       "Structured strength & conditioning blocks",
       "Scaled to every level in the room",
       "Weekly accountability check-in",
     ],
-    from: "AED 150", // TODO
-    cadence: "per session · monthly memberships",
+    booking: "Booked and billed through My-PT", // CONFIRM My-PT offers this format
+    cadence: "small group · women-only slots",
     audience: "Beginners and busy professionals who thrive with a crew",
   },
   {
@@ -98,7 +104,7 @@ export const services: Service[] = [
     name: "Online Coaching",
     tagline: "Coached anywhere. Accountable everywhere.",
     description:
-      "A fully personalised programme delivered through an app, with form reviews, weekly adjustments and a coach one message away. Ideal if you travel or train at your own gym.",
+      "A personalised programme delivered through an app, with form reviews, weekly adjustments and a coach one message away. Ideal if you travel or train at your own gym. Available through My-PT.",
     includes: [
       "Custom programme with video demos",
       "Form-check video reviews",
@@ -106,8 +112,8 @@ export const services: Service[] = [
       "Habit & nutrition coaching",
       "Direct WhatsApp support",
     ],
-    from: "AED 900", // TODO
-    cadence: "per month",
+    booking: "Arranged through My-PT", // CONFIRM My-PT offers online coaching; remove this programme if not
+    cadence: "monthly programme",
     audience: "Self-motivated people who want expert structure"
   },
 ];
@@ -186,7 +192,7 @@ export const faqs = [
   },
   {
     q: "How much does personal training cost?",
-    a: "1-to-1 sessions start from AED 350, ladies-only small group from AED 150 per session, and online coaching from AED 900 per month. Packs bring the per-session price down. Your first consultation is free.",
+    a: "Sessions are booked and billed through My-PT, and packs of sessions bring the per-session rate down. Message me and I will send you the current options the same day. Your first consultation is free.",
   },
   {
     q: "Can I train during pregnancy or after giving birth?",

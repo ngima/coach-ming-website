@@ -14,6 +14,8 @@ export function personSchema() {
     description: site.description,
     url: site.url,
     image: `${site.url}/opengraph-image`,
+    telephone: `+${site.whatsapp}`,
+    email: site.email,
     sameAs: [site.instagram],
     worksFor: { "@id": businessId },
     knowsLanguage: site.languages,
@@ -29,17 +31,13 @@ export function personSchema() {
   };
 }
 
+/** The employer. Ming is a coach at My-PT; clients book and pay there. */
 export function businessSchema() {
   return {
-    "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
+    "@type": ["ExerciseGym", "LocalBusiness"],
     "@id": businessId,
-    name: `${site.brand} · Personal Trainer at ${site.gym}`,
-    description: site.description,
+    name: site.gym,
     url: site.url,
-    telephone: `+${site.whatsapp}`,
-    email: site.email,
-    image: `${site.url}/opengraph-image`,
-    priceRange: "AED 150 – AED 900",
     address: {
       "@type": "PostalAddress",
       streetAddress: [site.address.street, site.address.area].filter(Boolean).join(", "),
@@ -51,7 +49,6 @@ export function businessSchema() {
       latitude: site.address.geo.lat,
       longitude: site.address.geo.lng,
     },
-    areaServed: { "@type": "City", name: site.city },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -66,9 +63,7 @@ export function businessSchema() {
         closes: "18:00",
       },
     ],
-    founder: { "@id": personId },
     employee: { "@id": personId },
-    sameAs: [site.instagram],
   };
 }
 
@@ -78,23 +73,24 @@ export function websiteSchema() {
     "@id": `${site.url}/#website`,
     url: site.url,
     name: site.brand,
-    publisher: { "@id": businessId },
+    about: { "@id": personId },
+    publisher: { "@id": personId },
     inLanguage: "en-AE",
   };
 }
 
+/** Services Ming delivers at My-PT. No offers or prices: billing is the gym's. */
 export function servicesSchema() {
   return {
-    "@type": "OfferCatalog",
-    "@id": `${site.url}/services#catalog`,
+    "@type": "ItemList",
+    "@id": `${site.url}/services#list`,
     name: "Personal training services in Abu Dhabi",
-    itemListElement: services.map((s) => ({
-      "@type": "Offer",
-      url: `${site.url}/services#${s.id}`,
-      priceCurrency: "AED",
-      price: s.from.replace(/[^\d.]/g, ""),
-      itemOffered: {
+    itemListElement: services.map((s, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
         "@type": "Service",
+        "@id": `${site.url}/services#${s.id}`,
         name: s.name,
         description: s.description,
         serviceType: "Personal training",

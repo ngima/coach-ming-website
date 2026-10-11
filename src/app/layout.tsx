@@ -34,7 +34,6 @@ export const metadata: Metadata = {
     "female personal trainer Abu Dhabi",
     "ladies personal trainer Abu Dhabi",
     "postnatal personal trainer Abu Dhabi",
-    "My-PT Abu Dhabi",
     "online coaching UAE",
   ],
   authors: [{ name: site.brand, url: site.url }],

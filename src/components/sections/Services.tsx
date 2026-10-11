@@ -28,10 +28,7 @@ export function Services() {
                   <p className="mt-2 text-sm font-medium text-lime">{s.tagline}</p>
                   <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">{s.description}</p>
                   <div className="mt-6 flex items-end justify-between border-t border-line pt-5">
-                    <div>
-                      <p className="eyebrow">From</p>
-                      <p className="font-display text-xl font-bold italic text-fg">{s.from}</p>
-                    </div>
+                    <p className="max-w-[60%] font-mono text-[11px] uppercase leading-relaxed tracking-[0.12em] text-muted">{s.booking}</p>
                     <span className="nav-link inline-flex items-center gap-2 text-fg transition-colors group-hover/card:text-lime">
                       Details
                       <svg aria-hidden width="14" height="14" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 ease-out-expo group-hover/card:translate-x-1">

@@ -66,7 +66,7 @@ export function Footer() {
       </div>
       <div className="border-t border-line">
         <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-2 px-6 py-5 pb-[calc(7rem+env(safe-area-inset-bottom))] md:pb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:flex-row md:items-center md:justify-between md:px-8">
-          <span>© {year} {site.brand}. All rights reserved.</span>
+          <span>© {year} {site.brand}. Personal site of a coach at {site.gym}, not the official {site.gym} website.</span>
           <span>{site.city} · {site.country}</span>
         </div>
       </div>

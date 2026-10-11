@@ -13,6 +13,14 @@ npm test           # unit tests (vitest)
 npm run lint
 ```
 
+## Employment model (read first)
+
+Ming is employed by My-PT and clients book and pay through My-PT. This site is her personal funnel into the gym. It therefore quotes no prices, names My-PT as the provider in structured data, and carries a footer line saying it is not the official My-PT website. Items marked `CONFIRM` in `src/config/site.ts` need a yes from Ming or My-PT before launch:
+
+- that the ladies-only small group and online coaching are formats My-PT offers (remove any that are not),
+- pack sizes (8, 12, 24),
+- that the first consultation is free.
+
 ## Before launch — fill in the placeholders
 
 Everything coach-specific lives in **`src/config/site.ts`**. Search the file for `TODO`:
@@ -24,7 +32,7 @@ Everything coach-specific lives in **`src/config/site.ts`**. Search the file for
 | `email`, `instagram`, `instagramHandle` | Real contact details. |
 | `address`, `hours`, `languages` | Studio address, Google Maps link, coordinates, opening hours. |
 | `credentials` | Exact certifications and awarding bodies. |
-| `services[].from` | Real prices. The FAQ answer about pricing in the same file must match. |
+| `services[].booking` | How each programme is booked. No prices on the site: Ming is employed by My-PT and sessions are billed by the gym. |
 | `testimonials` | **Sample quotes. Replace with real client words or empty the array** (the section hides itself when empty). |
 
 Also:

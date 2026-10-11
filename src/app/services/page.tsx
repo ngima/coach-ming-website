@@ -11,7 +11,7 @@ import { breadcrumbSchema, graph, servicesSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: `Personal Training Packages in ${site.city}`,
-  description: `1-to-1 personal training for everyone, ladies-only small group and online coaching in ${site.city} with ${site.brand} at ${site.gym}. Prices, inclusions and who each programme is for.`,
+  description: `1-to-1 personal training for everyone, ladies-only small group and online coaching in ${site.city} with ${site.brand} at ${site.gym}. What is included and who each programme is for.`,
   alternates: { canonical: "/services" },
   openGraph: { title: `Personal Training Packages in ${site.city} · ${site.brand}`, url: `${site.url}/services` },
 };
@@ -30,7 +30,7 @@ export default function ServicesPage() {
                 Personal training built for <span className="text-lime">your week</span>
               </>
             }
-            text="Three formats, one standard. Every programme is written for you, coached by me, and progressed every four weeks."
+            text="Three formats, one standard. Every programme is written for you, coached by me at My-PT, and progressed every four weeks. Sessions are booked and billed through My-PT."
           />
         </Container>
       </section>
@@ -51,10 +51,7 @@ export default function ServicesPage() {
                 <Button href={whatsappUrl(`Hi ${site.nickname}, I'm interested in ${s.name}. Can we book a free consult?`)} external>
                   Ask about this
                 </Button>
-                <p className="font-display text-2xl font-bold italic text-fg">
-                  <span className="eyebrow mr-2 not-italic">From</span>
-                  {s.from}
-                </p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">{s.booking}</p>
               </div>
             </Reveal>
             <Reveal delay={0.1} className="rounded-card border border-line bg-ink p-6 md:p-8">
