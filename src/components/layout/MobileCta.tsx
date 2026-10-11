@@ -27,6 +27,10 @@ export function MobileCta() {
       )}
       aria-hidden={!show}
     >
+      {/* Solid skirt below the viewport edge: when the browser toolbar collapses the
+          viewport grows before fixed elements are repositioned, and this covers the
+          gap so page content never shows through under the button. */}
+      <span aria-hidden className="pointer-events-none absolute inset-x-0 top-full h-32 bg-ink" />
       <a
         href={whatsappUrl()}
         target="_blank"
