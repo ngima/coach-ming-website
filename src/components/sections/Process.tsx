@@ -16,6 +16,7 @@ const travelAt = (i: number) => badgeAt(i) + FILL_S;
 const TRAVEL_EASE = [0.45, 0, 0.2, 1] as const;
 const INK = "#0a0c0a";
 const LIME = "#c8f531";
+const BADGE_PX = 48; // badge width; segments run from a badge's right edge to the next badge
 
 /**
  * The whole sequence runs from ONE trigger (the list entering the viewport)
@@ -77,7 +78,7 @@ export function Process() {
           align="center"
         />
         <motion.ol
-          className="relative mt-14 grid gap-10 md:grid-cols-3 md:gap-8"
+          className="relative mt-14 grid gap-10 md:grid-cols-3 md:gap-0"
           initial="hidden"
           whileInView="shown"
           viewport={{ once: true, amount: 0.35 }}
@@ -89,7 +90,10 @@ export function Process() {
               key={`seg-${p.step}`}
               aria-hidden
               className="absolute top-6 hidden h-px md:block"
-              style={{ left: `${(i / process.length) * 100}%`, width: `${100 / process.length}%` }}
+              style={{
+                left: `calc(${(i / process.length) * 100}% + ${BADGE_PX}px)`,
+                width: `calc(${100 / process.length}% - ${BADGE_PX}px)`,
+              }}
             >
               <motion.span variants={line(i)} className="absolute inset-0 origin-left bg-lime" />
               {!reduce && (
@@ -102,7 +106,7 @@ export function Process() {
           ))}
 
           {process.map((p, i) => (
-            <motion.li key={p.step} variants={step(i)} className="relative md:pt-14">
+            <motion.li key={p.step} variants={step(i)} className="relative md:pr-8 md:pt-14">
               <div className="flex items-center gap-4 md:absolute md:top-0 md:left-0">
                 <motion.span
                   variants={glow(i)}
