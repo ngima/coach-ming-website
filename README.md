@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Coach Ming — Personal Trainer Website
 
-## Getting Started
+Marketing site for Migma "Ming" Sherpa, female personal trainer at My-PT, Abu Dhabi.
+Built with Next.js 16 (App Router), TypeScript, Tailwind CSS v4 and Motion. Deploys to Vercel.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build && npm start
+npm test           # unit tests (vitest)
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Before launch — fill in the placeholders
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Everything coach-specific lives in **`src/config/site.ts`**. Search the file for `TODO`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Field | What to put |
+|---|---|
+| `url` | The real domain (also update it in Vercel → Domains). Used for canonical URLs, sitemap and schema. |
+| `whatsapp` | WhatsApp number, digits only with country code (e.g. `9715XXXXXXX`). Every "Book a free consult" button uses it. |
+| `email`, `instagram`, `instagramHandle` | Real contact details. |
+| `address`, `hours`, `languages` | Studio address, Google Maps link, coordinates, opening hours. |
+| `credentials` | Exact certifications and awarding bodies. |
+| `services[].from` | Real prices. The FAQ answer about pricing in the same file must match. |
+| `testimonials` | **Sample quotes. Replace with real client words or empty the array** (the section hides itself when empty). |
 
-## Learn More
+Also:
+- `src/app/about/page.tsx` — the "My story" paragraphs are a draft to personalise.
+- Add a professional photo of Ming to the About hero (there is a placeholder card with a `TODO` comment). Use `next/image`.
 
-To learn more about Next.js, take a look at the following resources:
+## Contact form email (optional)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The WhatsApp button is the primary lead channel and needs no setup. The contact form sends email through [Resend](https://resend.com) when these environment variables are set (see `.env.example`):
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=
+CONTACT_FROM_EMAIL=
+```
 
-## Deploy on Vercel
+Without them the form tells the visitor to use WhatsApp or email instead.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy — GitHub + Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# 1. Push to GitHub (create an empty repo first, e.g. coach-ming-website)
+git remote add origin git@github.com:<your-user>/coach-ming-website.git
+git push -u origin main
+
+# 2. Vercel: https://vercel.com/new → Import the repo → Framework "Next.js" → Deploy.
+#    Add the env vars above under Settings → Environment Variables if using the form.
+#    Add the custom domain under Settings → Domains, then set `site.url` to match.
+```
+
+Every push to `main` deploys to production; every pull request gets a preview URL.
+
+## After launch — SEO checklist
+
+1. Google Search Console: add the domain, submit `https://<domain>/sitemap.xml`.
+2. Google Business Profile for "Coach Ming · Personal Trainer" at My-PT, Abu Dhabi, linking to the site. This is the single biggest local-search lever.
+3. Test rich results: https://search.google.com/test/rich-results (Person, LocalBusiness, FAQ, Service schema are emitted).
+4. Ask the first clients for Google reviews; then replace the sample testimonials.
+5. Consider a `/blog` later for long-tail queries ("postnatal training Abu Dhabi", "ladies gym Reem Island").
+
+## Project structure
+
+```
+src/
+  config/site.ts          # all content and contact details
+  app/                    # routes: / , /services , /about , /contact (+ sitemap, robots, OG image, icon, manifest)
+  components/
+    layout/               # Header (nav + mobile menu), Footer, Logo
+    sections/             # page sections (Hero, ProgrammePanel, Services, Why, Process, Testimonials, FAQ, CTABand)
+    ui/                   # Button, Reveal, GlowCard, Accordion, Ticker, SectionHeading, Eyebrow, Container
+    forms/ContactForm.tsx # client form → server action in app/contact/actions.ts
+    seo/JsonLd.tsx
+  lib/                    # seo.ts (schema builders), whatsapp.ts, cn.ts (+ tests)
+docs/
+  superpowers/specs/      # design spec and decision log
+  REVIEW.md               # honest self-review with Lighthouse numbers
+  screenshots/            # reference captures
+scripts/screenshots.mjs   # Playwright capture of every page (node scripts/screenshots.mjs out-dir)
+```
