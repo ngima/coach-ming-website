@@ -22,6 +22,10 @@ const BITE_MS = 320;
 const CUT_MS = 300; // click: cut through the rest
 const RETRACT_MS = 140;
 const GRAVITY = 700;
+// canvas overhang so sparks are never clipped at the edges of the list
+const PAD_X = 160;
+const PAD_TOP = 48;
+const PAD_BOTTOM = 72;
 
 function useReducedMotion() {
   const [reduce, setReduce] = useState(false);
@@ -43,6 +47,8 @@ class SparkField {
   constructor(private canvas: HTMLCanvasElement, private list: HTMLUListElement) {}
 
   emit(x: number, y: number, count: number, burst = false) {
+    x += PAD_X;
+    y += PAD_TOP;
     // a little tip jitter while grinding: the disc is never perfectly still
     if (!burst && count < 3) {
       x += (Math.random() - 0.5) * 2;
@@ -81,8 +87,8 @@ class SparkField {
     this.last = now;
 
     const dpr = window.devicePixelRatio || 1;
-    const w = this.list.offsetWidth;
-    const h = this.list.offsetHeight + 56;
+    const w = this.list.offsetWidth + PAD_X * 2;
+    const h = this.list.offsetHeight + PAD_TOP + PAD_BOTTOM;
     if (this.canvas.width !== Math.round(w * dpr) || this.canvas.height !== Math.round(h * dpr)) {
       this.canvas.width = Math.round(w * dpr);
       this.canvas.height = Math.round(h * dpr);
@@ -136,7 +142,7 @@ export function DesktopNav({ pathname }: { pathname: string }) {
 
   return (
     <nav aria-label="Primary" className="relative hidden md:block">
-      <canvas ref={canvasRef} aria-hidden className="pointer-events-none absolute left-0 top-0 z-10" />
+      <canvas ref={canvasRef} aria-hidden className="pointer-events-none absolute z-10" style={{ left: -PAD_X, top: -PAD_TOP }} />
       <ul ref={listRef} className="flex items-center gap-1">
         {nav.map((item) => {
           const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
