@@ -15,13 +15,15 @@ import { cn } from "@/lib/cn";
 export function MobileCta() {
   const { scrollY } = useScroll();
   const [show, setShow] = useState(false);
-  useMotionValueEvent(scrollY, "change", (v) => setShow(v > 520));
+  // Hysteresis: appears after 560px, hides again only above 440px, so it never flickers.
+  useMotionValueEvent(scrollY, "change", (v) => setShow((prev) => (prev ? v > 440 : v > 560)));
 
   return (
     <div
       className={cn(
-        "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] transition-transform duration-200 ease-out-expo will-change-transform [transform:translateZ(0)] md:hidden",
-        show ? "translate-y-0" : "translate-y-[110%]",
+        "fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] will-change-transform md:hidden",
+        "transition-[translate,opacity] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
+        show ? "translate-y-0 opacity-100" : "translate-y-full opacity-0",
       )}
       aria-hidden={!show}
     >
