@@ -10,7 +10,8 @@ import { cn } from "@/lib/cn";
  * across the item from left to right while sparks spray off the cutting tip
  * and the label vibrates. Clicking cuts through: the line completes and
  * stays as the active indicator. Everything is pointer-driven, so it costs
- * nothing until a cursor arrives, and reduced-motion users get a plain line.
+ * nothing until a cursor arrives. Under prefers-reduced-motion the cut and the
+ * brief, confined sparks still play; only the label vibration is dropped.
  */
 
 type Spark = { x: number; y: number; vx: number; vy: number; age: number; life: number };
@@ -120,12 +121,9 @@ export function DesktopNav({ pathname }: { pathname: string }) {
     };
   }, []);
 
-  const emit = useCallback(
-    (x: number, y: number, count: number, burst = false) => {
-      if (!reduce) field.current?.emit(x, y, count, burst);
-    },
-    [reduce],
-  );
+  const emit = useCallback((x: number, y: number, count: number, burst = false) => {
+    field.current?.emit(x, y, count, burst);
+  }, []);
 
   return (
     <nav aria-label="Primary" className="relative hidden md:block">
@@ -197,12 +195,7 @@ function NavItem({ href, label, active, reduce, emit, listRef }: ItemProps) {
 
   const onEnter = () => {
     if (active) return;
-    if (reduce) {
-      setLine(1);
-      progress.current = 1;
-      return;
-    }
-    setShaking(true);
+    if (!reduce) setShaking(true);
     animate(1, CUT_MS * (1 - progress.current), true);
   };
 
