@@ -6,12 +6,19 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 
-const DRAW_S = 1.4;
+// One step: badge fills, the line travels to the next badge, then a beat of rest.
+const FILL_S = 0.3;
+const TRAVEL_S = 0.9;
+const REST_S = 0.5;
+const STEP_S = FILL_S + TRAVEL_S + REST_S;
+const START_S = 0.15;
+const badgeAt = (i: number) => START_S + i * STEP_S;
+const travelAt = (i: number) => badgeAt(i) + FILL_S;
 
 /**
- * When the steps scroll into view the lime line draws itself left to right
- * and each step badge lights up as the line reaches it. It plays once, on its
- * own clock, so the sequence (consult → plan → train) is felt, not scrubbed.
+ * When the steps scroll into view they play as a sequence on their own clock:
+ * 01 fills → line travels → rest → 02 fills → line travels → rest → 03 fills
+ * → line runs out. Once per visit, never scrubbed by scroll.
  */
 export function Process() {
   const reduce = useReducedMotion();
@@ -32,17 +39,20 @@ export function Process() {
         />
         <ol className="relative mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
           <div aria-hidden className="absolute left-0 top-6 hidden h-px w-full bg-line md:block" />
-          <motion.div
-            aria-hidden
-            className="absolute left-0 top-6 hidden h-px w-full origin-left bg-lime shadow-[0_0_8px_rgba(200,245,49,.6)] md:block"
-            initial={reduce ? false : { scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={viewport}
-            transition={{ duration: DRAW_S, ease: [0.65, 0, 0.35, 1] }}
-          />
+          {process.map((p, i) => (
+            <motion.div
+              key={`seg-${p.step}`}
+              aria-hidden
+              className="absolute top-6 hidden h-px origin-left bg-lime shadow-[0_0_8px_rgba(200,245,49,.6)] md:block"
+              style={{ left: `${(i / process.length) * 100}%`, width: `${100 / process.length}%` }}
+              initial={reduce ? false : { scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={viewport}
+              transition={{ delay: reduce ? 0 : travelAt(i), duration: TRAVEL_S, ease: [0.4, 0, 0.2, 1] }}
+            />
+          ))}
           {process.map((p, i) => {
-            // light the badge as the line passes its position (0, 1/3, 2/3 of the width)
-            const at = reduce ? 0 : 0.15 + (i / process.length) * DRAW_S;
+            const at = reduce ? 0 : badgeAt(i);
             return (
               <Reveal as="li" key={p.step} delay={i * 0.1} className="relative md:pt-14">
                 <div className="flex items-center gap-4 md:absolute md:top-0 md:left-0">
@@ -51,7 +61,7 @@ export function Process() {
                     initial={reduce ? false : { backgroundColor: "#0a0c0a", color: "#c8f531" }}
                     whileInView={{ backgroundColor: "#c8f531", color: "#0a0c0a" }}
                     viewport={viewport}
-                    transition={{ delay: at, duration: 0.25 }}
+                    transition={{ delay: at, duration: FILL_S }}
                   >
                     {p.step}
                   </motion.span>
